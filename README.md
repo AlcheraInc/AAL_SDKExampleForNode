@@ -1,7 +1,14 @@
 # AAL_SDKExampleForNode
 A project with napi to connect between C++ and Node.js
 
-## Environments
+## Test Environments
+### OS
+Ubuntu 22.04
+
+### GCC/G++
+gcc 11.3.0
+g++ 11.3.0
+
 ### Current Node.js Version
  - v18.16.0
 ### Dependencies
@@ -10,6 +17,11 @@ A project with napi to connect between C++ and Node.js
  - node-addon-api
 
 ## Setup
+### Install GCC/G++
+```
+sudo apt install gcc g++
+```
+
 ### Install packages with npm
 ```
 npm install

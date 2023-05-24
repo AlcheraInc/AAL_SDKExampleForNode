@@ -27,6 +27,11 @@ sudo apt install gcc g++
 sudo apt install cmake
 ```
 
+### Write PATH on the .bashrc
+```
+export PATH="$HOME/node-v18.16.0-linux-x64/bin:$PATH"
+```
+
 ### Install packages with npm
 ```
 npm install

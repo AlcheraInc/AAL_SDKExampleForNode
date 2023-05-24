@@ -4,11 +4,11 @@ A project with napi to connect between C++ and Node.js
 ## Test Environments
 ### OS
 Ubuntu 22.04
-
 ### GCC/G++
 gcc 11.3.0
 g++ 11.3.0
-
+### cmake
+cmake version ^3.22.1
 ### Current Node.js Version
  - v18.16.0
 ### Dependencies
@@ -20,6 +20,11 @@ g++ 11.3.0
 ### Install GCC/G++
 ```
 sudo apt install gcc g++
+```
+
+### Install cmake
+```
+sudo apt install cmake
 ```
 
 ### Install packages with npm

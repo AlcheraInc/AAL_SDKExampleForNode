@@ -7,7 +7,7 @@
 // npm을 통해 node-addon-api를 로컬로 설치하면 ./node_modules 폴더에 같이 딸려옵니다.
 // 이것을 설치하지 않고, 먼저 작업하면 include에 빨간줄이 그어집니다.
 #include <napi.h>
-
+#include <opencv2/opencv.hpp>
 //
 // 자바스크립트의 String 객체를 반환하는 함수입니다.
 // 파라미터는 info[n] 형태로 얻어올 수 있습니다.
@@ -16,6 +16,12 @@ Napi::String SayHi(const Napi::CallbackInfo& info) {
     // info에는 현재 스코프 정보(env)도 들어있습니다.
     // 자바스크립트 객체를 생성하려면 반드시 이것부터 가져와야합니다.
     Napi::Env env = info.Env();
+
+    cv::namedWindow("Test for OpenCV in NAPI", cv::WINDOW_NORMAL);
+    auto img = cv::imread("/home/systembug/workspace/WebstormProjects/AAL_SDKExampleForNode/examples/bshot.jpg");
+    cv::imshow("Test for OpenCV in NAPI", img);
+    cv::waitKey(0);
+    cv::destroyAllWindows();
 
     //
     // 현재 스코프 정보(env)와 std::string을 사용하여,

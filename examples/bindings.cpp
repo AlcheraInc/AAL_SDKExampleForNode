@@ -18,7 +18,7 @@ Napi::String SayHi(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
 
     cv::namedWindow("Test for OpenCV in NAPI", cv::WINDOW_NORMAL);
-    auto img = cv::imread("/home/systembug/workspace/WebstormProjects/AAL_SDKExampleForNode/examples/bshot.jpg");
+    auto img = cv::imread("./examples/bshot.jpg");
     cv::imshow("Test for OpenCV in NAPI", img);
     cv::waitKey(0);
     cv::destroyAllWindows();

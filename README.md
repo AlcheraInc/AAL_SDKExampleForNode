@@ -31,8 +31,8 @@ sudo apt install cmake
 [OpenCV Github](https://github.com/opencv/opencv)
 
 ### Install libtorch & torchvision
-[Install libtorch](https://pytorch.org/get-started/locally/)
-[Install torchvision](https://github.com/pytorch/vision)
+[Install libtorch](https://pytorch.org/get-started/locally/)   
+[Install torchvision](https://github.com/pytorch/vision)   
 We tested at libtorch 1.13.1.
 
 ### Write PATH on the .bashrc

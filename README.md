@@ -39,6 +39,10 @@ We tested at libtorch 1.13.1.
 ```
 export PATH="$HOME/node-v18.16.0-linux-x64/bin:$PATH"
 ```
+You should add some paths on the LD_LIBRARY_PATH as below:
+```
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/usr/local/cuda/lib64:/home/systembug/opencv/lib:/usr/local/cuda/extras/CUPTI/lib64:/home/systembug/TensorRT/TensorRT/lib:/home/systembug/libtorch/lib:/home/systembug/torchvision/lib:${LD_LIBRARY_PATH}
+```
 
 ### Install packages with npm
 ```

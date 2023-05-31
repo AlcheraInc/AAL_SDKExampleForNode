@@ -27,6 +27,14 @@ sudo apt install gcc g++
 sudo apt install cmake
 ```
 
+### Install OpenCV
+[OpenCV Github](https://github.com/opencv/opencv)
+
+### Install libtorch & torchvision
+[Install libtorch](https://pytorch.org/get-started/locally/)
+[Install torchvision](https://github.com/pytorch/vision)
+We tested at libtorch 1.13.1.
+
 ### Write PATH on the .bashrc
 ```
 export PATH="$HOME/node-v18.16.0-linux-x64/bin:$PATH"

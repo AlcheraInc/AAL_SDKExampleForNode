@@ -19,6 +19,18 @@ message(STATUS "OpenCV_LIBS=${OpenCV_LIBS}")
 message(STATUS "OpenCV ${OpenCV_VERSION} found (${OpenCV_CONFIG_PATH})")
 include_directories(${OpenCV_INCLUDE_DIR})
 
+# Torch & TorchVision
+set(Torch_DIR $ENV{HOME}/libtorch/share/cmake/Torch)
+set(TorchVision_DIR $ENV{HOME}/torchvision/share/cmake/TorchVision)
+find_package(Torch REQUIRED)
+find_package(TorchVision REQUIRED)
+
+# Python3
+# set(Python3_ROOT_DIR /home/alchera/anaconda3)
+set(Python3_ROOT_DIR $ENV{HOME}/python)
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+include_directories(${Python3_INCLUDE_DIRS})
+
 # add_executable(examples main.cpp)
 set(SOURCE_FILES bindings.cpp)
 add_library(examples SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})

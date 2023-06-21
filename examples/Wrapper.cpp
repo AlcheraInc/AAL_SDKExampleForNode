@@ -5,6 +5,7 @@
 #include "Wrapper.h"
 #include <memory>
 #include <chrono>
+#include <iostream>
 
 namespace alchera::cys {
     Wrapper::Wrapper(Napi::Env env, Napi::Object exports)
@@ -16,14 +17,20 @@ namespace alchera::cys {
             InstanceMethod("testArr", &Wrapper::testArr),
             InstanceMethod("testSetSimpleCallback", &Wrapper::testSetSimpleCallback),
             InstanceMethod("testRunSimpleCallback", &Wrapper::testRunSimpleCallback),
-            InstanceMethod("testTimer", &Wrapper::testTimer)
-        });
+            InstanceMethod("testTimer", &Wrapper::testTimer),
+            InstanceMethod("testCoroutine", &Wrapper::testCoroutine)
+          });
     }
 
     Wrapper::Wrapper(Wrapper&& wrapper) noexcept
         : m_setSimpleCallback(wrapper.m_setSimpleCallback)
     {
 
+    }
+
+    Wrapper::~Wrapper()
+    {
+        std::cout << "Wrapper is destroyed" << '\n';
     }
 
     Napi::Value Wrapper::testNum(const Napi::CallbackInfo& info)
@@ -167,6 +174,24 @@ namespace alchera::cys {
     Napi::Value Wrapper::testCoroutine(const Napi::CallbackInfo& info)
     {
         // TODO: implement with coroutine
-        return info.Env().Null();
+        auto env = info.Env();
+        if (info.Length() != 1) {
+            Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+            auto failed = Napi::Promise::Deferred::New(env);
+            failed.Reject(Napi::Error::New(env, "Wrong number of arguments").Value());
+            return failed.Promise();
+        }
+
+        if (!info[0].IsString()) {
+            Napi::TypeError::New(env, "Wrong arguments as function").ThrowAsJavaScriptException();
+            auto failed = Napi::Promise::Deferred::New(env);
+            failed.Reject(Napi::Error::New(env, "Wrong arguments as function").Value());
+            return failed.Promise();
+        }
+
+        auto str = info[0].As<Napi::String>().Utf8Value();
+        m_coroutineWorker = new CoroutineWorker(env, str);
+        m_coroutineWorker->Queue();
+        return m_coroutineWorker->getDeferred().Promise();
     }
 }

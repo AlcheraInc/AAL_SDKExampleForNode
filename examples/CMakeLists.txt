@@ -33,7 +33,7 @@ find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
 
 # add_executable(examples main.cpp)
-set(SOURCE_FILES Wrapper.cpp Wrapper.h)
+set(SOURCE_FILES Wrapper.cpp Wrapper.h CoroutineWorker.cpp CoroutineWorker.h)
 add_library(examples SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
 set_target_properties(examples PROPERTIES PREFIX "" SUFFIX ".node")
 target_link_libraries(examples ${CMAKE_JS_LIB} ${OpenCV_LIBRARIES})

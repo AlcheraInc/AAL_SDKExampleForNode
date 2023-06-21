@@ -10,6 +10,26 @@ console.log(testVal)
 console.log(testStr)
 console.log(testArr)
 
+async function test_function()
+{
+    try {
+        const result = await wrapper.testCoroutine("world");
+        console.log(result); // ‘hello, world’
+    } catch (err) {
+        console.error(err, "Failure in helloWorker");
+        throw err;
+    }
+}
+
+test_function().then(
+  wrapper.testTimer.call(new Date(), function (clock) {
+      const context = this;
+      console.log(context, clock);
+  }, 5)
+).catch(err => {
+    console.error(err.message)
+})
+
 wrapper.testSetSimpleCallback(() => {
     console.log("Hello world")
 })
@@ -19,7 +39,3 @@ wrapper.testSetSimpleCallback(() => {
 })
 wrapper.testRunSimpleCallback()
 
-wrapper.testTimer.call(new Date(), function (clock) {
-    const context = this;
-    console.log(context, clock);
-}, 5)

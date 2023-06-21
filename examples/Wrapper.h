@@ -7,6 +7,7 @@
 
 #include <napi.h>
 #include <thread>
+#include "CoroutineWorker.h"
 
 void callJS(Napi::Env env, Napi::Function callback, Napi::Reference<Napi::Value>* context, uint32_t* data) {
     if (env != nullptr) {
@@ -25,7 +26,7 @@ namespace alchera::cys {
         Wrapper(Napi::Env env, Napi::Object exports);
         Wrapper(const Wrapper& wrapper) = delete;
         Wrapper(Wrapper&& wrapper) noexcept;
-        virtual ~Wrapper() = default;
+        virtual ~Wrapper();
 
     public:
         Napi::Value testNum(const Napi::CallbackInfo& info);
@@ -34,13 +35,16 @@ namespace alchera::cys {
         Napi::Value testSetSimpleCallback(const Napi::CallbackInfo& info);
         Napi::Value testRunSimpleCallback(const Napi::CallbackInfo& info);
         Napi::Value testTimer(const Napi::CallbackInfo& info);
-        Napi::Value testCoroutine(const Napi::CallbackInfo& info); // not implemented yet
+        Napi::Value testCoroutine(const Napi::CallbackInfo& info);
 
     private:
         std::thread                                                                                 m_nativeThread;
         Napi::ThreadSafeFunction                                                                    m_simpleCallback;
         Napi::TypedThreadSafeFunction<Napi::Reference<Napi::Value>, uint32_t, callJS>                m_timerCallback;
         bool                                                                                        m_setSimpleCallback;
+
+    private:
+        CoroutineWorker*        m_coroutineWorker;
 
     };
 

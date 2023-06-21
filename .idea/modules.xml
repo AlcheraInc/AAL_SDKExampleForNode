@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AAL_SDKExampleForNode.iml" filepath="$PROJECT_DIR$/.idea/AAL_SDKExampleForNode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cpp_api.iml" filepath="$PROJECT_DIR$/.idea/cpp_api.iml" />
     </modules>
   </component>
 </project>
